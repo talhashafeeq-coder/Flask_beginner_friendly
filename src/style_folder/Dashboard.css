@@ -1,0 +1,98 @@
+/* Initial styles for the port light */
+.port-light {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Adjust width as needed */
+    height: 10px; /* Adjust height as needed */
+    background-color: rgba(255, 255, 0, 0.8); /* Light color (yellow) */
+    opacity: 0;
+    border-radius: 50%;
+    z-index: 1000;
+    animation: slideUp 1.5s ease forwards;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  .logo-text {
+    font-size: 2.5rem;
+    color: #ff5722;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin: 0;
+  }
+
+  .logo-icon {
+    font-size: 3rem;
+    color: #2196f3;
+    margin-top: -10px;
+  }
+  .logo:hover.logo-text {
+    color: #4caf50;
+  }
+
+  .logo:hover.logo-icon {
+    color: #ffeb3b;
+  }
+  
+  /* Keyframes for sliding up the light */
+  @keyframes slideUp {
+    0% {
+      bottom: -50px;
+      opacity: 0;
+    }
+    50% {
+      bottom: 100px;
+      opacity: 1;
+    }
+    100% {
+      bottom: 100px;
+      opacity: 0;
+    }
+  }
+  
+  .banner {
+    background: linear-gradient(to right, #ffd89b, #19547b);
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+    .banner_heading {
+    color: white;
+    font-family: cursive;
+    font-size: 50px;
+    margin: 0;
+  }
+  
+  .banner_para {
+    color: aliceblue;
+    font-size: 1.2rem;
+  }
+  .animated-icon {
+    animation: moveUpDown 5s ease-in-out infinite;
+    transform-style: preserve-3d; /* Enables 3D effects */
+  }
+  
+  /* Keyframes for smooth up and down motion */
+  @keyframes moveUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  

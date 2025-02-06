@@ -1,0 +1,43 @@
+/* Default Navbar Style (Transparent) */
+.navbar-custom {
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+}
+  
+  .navbar-custom .navbar-nav .nav-link,
+  .navbar-custom .navbar-brand {
+    color: white; /* Text color for navbar items */
+  }
+  
+  /* Scrolled Navbar Style (White Background and Black Text) */
+  .navbar-custom.scrolled {
+    background-color: white;
+    color: black;
+    padding: 10px;
+  }
+  
+  .navbar-custom.scrolled .navbar-nav .nav-link,
+  .navbar-custom.scrolled .navbar-brand {
+    color: black; /* Text color after scrolling */
+  }
+  
+  .navbar-custom.scrolled .navbar-toggler-icon {
+    background-color: #95a5a6; /* Color of the hamburger menu */
+  }
+  #brand{
+    font-size: 30px;
+    font-weight: bold;
+  }
+  @media (max-width: 480px) {
+    #brand{
+      font-size: 10px;
+      text-align: center;
+
+    }
+  
+     }
+
+  

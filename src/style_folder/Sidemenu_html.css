@@ -1,0 +1,19 @@
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #f9f9f9;
+    overflow-y: auto;
+    padding-right: 20px;
+    border-right: 1px solid #ccc;
+  }
+  
+  /* Hide sidebar on smaller screens */
+  @media (max-width: 767px) {
+    .side-menu {
+      display: none;
+    } 
+}
+  

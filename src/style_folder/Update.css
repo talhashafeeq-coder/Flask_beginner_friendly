@@ -1,0 +1,61 @@
+@keyframes text3D {
+    0% {
+        transform: translateZ(-300px) rotateX(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateZ(0) rotateX(0);
+        opacity: 1;
+    }
+}
+
+.text-3d {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    perspective: 1000px;
+    transform: translateZ(-300px) rotateX(90deg);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+}
+
+.text-3d.visible {
+    animation: text3D 1s forwards;
+}
+
+.waiting{
+    background-image: url("../Images/waiting.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 62vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+.waiting h3{
+    color: white;
+    margin-top: 8%;
+    /* font-size: small; */
+}
+.heading_3{
+text-align: center;
+margin-bottom: 20px;
+}
+.set_bg{
+background-color: gray;    
+}
+.heading_4{
+font-size: bold;
+font-size: 40px;
+color: white;
+}
+.para{
+color: #2c3e50;
+font-size: 12px;
+}

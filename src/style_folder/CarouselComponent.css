@@ -1,0 +1,14 @@
+.custom-height {
+    height: 400px;
+    object-fit: cover;
+  }
+.CarouselHeading{
+color: #c0392b;
+font-family: cursive;
+font-size: 50px;
+}
+.carousel-para{
+color: white;
+background: blue;
+}
+

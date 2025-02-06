@@ -1,0 +1,83 @@
+/* AutoScrollText.css */
+
+/* Container with gradient background */
+.scroll-container-alt {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    /* background: linear-gradient(90deg, #4CAF50, #2196F3, #FF9800); */
+    background-size: 300% 300%;
+    animation: gradient-move 10s ease infinite;
+    padding: 15px 0;
+    border-radius: 8px;
+  }
+  
+  /* Moving text */
+  .scroll-text-alt {
+    display: inline-block;
+    animation: scroll-alt 45s linear infinite;
+  }
+  
+  /* Text with bold styling */
+  .language-alt {
+    display: inline-block;
+    margin: 0 25px;
+    font-size: 26px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: color-fade 10s ease infinite;
+  }
+  
+  /* Color variations for languages */
+  .color-0 { color: #FF5733; }
+  .color-1 { color: #33FF57; }
+  .color-2 { color: #3357FF; }
+  .color-3 { color: #FFC300; }
+  .color-4 { color: #C70039; }
+  
+  /* Scroll animation */
+  @keyframes scroll-alt {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Gradient animation */
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Color-fading effect */
+  @keyframes color-fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .language-alt {
+      font-size: 20px;
+      margin: 0 15px;
+    }
+    .scroll-container-alt {
+      padding: 10px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .language-alt {
+      font-size: 16px;
+      margin: 0 10px;
+    }
+    .scroll-container-alt {
+      padding: 8px 0;
+    }
+  }
+  
