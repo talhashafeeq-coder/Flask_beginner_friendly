@@ -2,7 +2,7 @@ from flask import Flask , jsonify , Blueprint
 from flask_cors import CORS
 
 
-auth_bp = Blueprint('auth', __name__)
+auth_bp = Blueprint('json_html', __name__)
 
 
 app = Flask(__name__)

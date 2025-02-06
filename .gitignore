@@ -2,3 +2,8 @@ Routes.py
 db.py
 auth_check.py
 .dockerignore
+.myenv
+
+json_html.py
+user_collection_routes.py
+utils.py
