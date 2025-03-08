@@ -1,93 +1,170 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../style_folder/sidemenu_html.css';// import style file
-import { Link } from 'react-router-dom';
-import useScrollToSection from '../Hooks/ScrollToSection';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import '../style_folder/PythonCourse.css'
+import { Link } from "react-router-dom";
+import he from "he";
 
 const javaScript = () => {
-  const [tutorials, setTutorials] = useState([]);
-   const [error, setError] = useState(false);
-   const [loading, setLoading] = useState(false);
-   const {scrollToSection} = useScrollToSection()
+    const [tutorials, setTutorials] = useState([]);
+    const [topics, setTopics] = useState([]);
+    const [expandedTopics, setExpandedTopics] = useState({});
+    const [selectedTopic, setSelectedTopic] = useState(null);
+    const [selectedSubtopic, setSelectedSubtopic] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
+    useEffect(() => {
+        const fetchCourseData = async () => {
+            try {
+                setLoading(true);
+                setError(false);
 
-  useEffect(() => {
-    const getTutorials = async () => {
-      try{
-        setError(false);
-        setLoading(true);
-        const response = await axios.get('http://127.0.0.1:5000/add_content/course_content')
-        setTutorials(response.data)
-      }catch(error){
-        setError(true)
-        console.log('Errror fetching tutorials:',  error)
-      }finally{
-        setLoading(false)
-      }
+                // 🟢 Fetch Main Course Content
+                const contentResponse = await axios.get("http://127.0.0.1:5000/add_content/add_content");
+                if (Array.isArray(contentResponse.data)) {
+                    setTutorials(contentResponse.data);
+                }
+
+                // 🟢 Fetch Subtopics List
+                const subtopicResponse = await axios.get("http://127.0.0.1:5000/topic_subtopic/add_subtopic");
+                const subtopics = subtopicResponse.data.subtopics;
+
+                // 🟢 Fetch Subtopics Detailed Content
+                const detailResponse = await axios.get("http://127.0.0.1:5000/subtopic/get_all_subtopics");
+                const allSubtopics = detailResponse.data.subtopics;
+
+                // 🟢 Merge Topics with their Subtopics
+                const resolvedTopics = subtopics.map(subtopic => ({
+                    topic_id: subtopic.course_id,
+                    sub_topic_id: subtopic.id,
+                    sub_topic_name: subtopic.content,
+                    details: allSubtopics.filter(item => item.topic_id === subtopic.id) // ✅ Only related subtopics!
+                }));
+
+                setTopics(resolvedTopics);
+                
+            } catch (err) {
+                console.error("Error fetching data:", err);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourseData();
+    }, []);
+
+    // ✅ Sirf Javascript se start hone wale topics show honge
+    const javaScriptTutorials = tutorials.filter(tutorial =>
+        tutorial.topic_name && tutorial.topic_name.trim().toLowerCase().startsWith("javascript")
+    );
+
+    // ✅ Toggle Function for Expanding Topics
+    const toggleTopic = (topicId) => {
+        setExpandedTopics(prevState => ({
+            ...prevState,
+            [topicId]: !prevState[topicId]
+        }));
     };
-    getTutorials();
-  }, []);
-  // Filter tutorials to show only javascript courses
-  const javascriptTutorials = tutorials.filter(tutorial =>
-    tutorial.course_name && tutorial.course_name.trim().toLowerCase().includes('javascript')
-  );
-    // **Handle different states**
-    if (loading) {
-      return <div className="alert alert-info text-center mt-5">Loading tutorials... ⏳</div>;
-    }
-  
-    if (error) {
-      return <div className="alert alert-danger text-center mt-5">❌ Error fetching tutorials. Please try again later.</div>;
-    }
-  
-    if (javascriptTutorials.length === 0) {
-      return <div className="alert alert-warning text-center mt-5">🚀 No JavaScript tutorials available at the moment.</div>;
-    }
-  
 
-  return (
-    <>
-      <div className='container'>
-        <div className="row">
-          {/* Sidebar with Course Names */}
-          <div className="col-sm-4 side-menu">
-            <h2 style={{ padding: "10px", fontFamily: "cursive", color: "rebeccapurple" }}>Javascript Course Topics</h2>
-            <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-              {javascriptTutorials.map((tutorial) => (
-                <li key={tutorial.id} style={{ padding: "5px 0" }}>
-                  <button onClick={() => scrollToSection(tutorial.id)} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer', textAlign: 'left', padding: 0 }}>
-                    {tutorial.course_name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Main Content */}
-          <div className="col-sm-8 offset-sm-4">
-            <h1 style={{ padding: "20px", fontFamily: "cursive" }}>Javascript Tutorials</h1>
-            <br />
-            <button type="button" className="btn btn-lg btn-info" style={{ borderRadius: "20px" }}>
-              <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-                Home
-              </Link>
+    return (
+        <div style={{ display: "flex", height: "100vh" }}>
+{/* Toggle Button */}
+<button className="sidebar-toggle" onClick={() => setIsOpen(!isOpen)}>
+                {isOpen ? "✖ Close" : "☰ Menu"}
             </button>
-            {/* Render Python Tutorials Only */}
-            <div>
-              {javascriptTutorials.map((tutorial) => (
-                <div key={tutorial.id} id={`tutorial-${tutorial.id}`} style={{ marginBottom: '20px' }}>
-                  <h2 style={{ color: "rebeccapurple", padding: "10px", borderTop: "1px solid", borderBottom: "1px solid" }}>{tutorial.course_name}</h2>
-                  <div style={{ padding: "10px" }} dangerouslySetInnerHTML={{ __html: tutorial.content }} />
-                  {/* <h2 style={{ color: "rebeccapurple", padding: "10px" }}>Example</h2>
-                  <div style={{ backgroundColor: "lightcyan" }} dangerouslySetInnerHTML={{ __html: tutorial.example }}></div> */}
-                </div>
-              ))}
+
+            {/* Sidebar */}
+            <div className={`sidebar ${isOpen ? "open" : ""}`}>
+                <h4 className="heading">
+                    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+                        JavaScript Course Topics
+                    </Link>
+                </h4>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>Error loading data.</p>
+                ) : (
+                    <ul style={{ listStyleType: "none", padding: "0" }}>
+                        {javaScriptTutorials.map((tutorial) => {
+                            const topicSubtopics = topics.filter(t => t.topic_id === tutorial.id);
+
+                            return (
+                                <li key={tutorial.id} className="sub_heading">
+                                    <button className="show_topics"
+                                        onClick={() => {
+                                            setSelectedTopic(tutorial);
+                                            setSelectedSubtopic(null);
+                                            if (topicSubtopics.length > 0) {
+                                                toggleTopic(tutorial.id);
+                                            }
+                                        }}
+                                    >
+                                        {tutorial.topic_name} 
+                                        {topicSubtopics.length > 0 && (
+                                            <span className="sub_drop">  {expandedTopics[tutorial.id] ? "▼" : "▶"}</span>
+                                        )}
+                                    </button>
+
+                                    {expandedTopics[tutorial.id] && topicSubtopics.length > 0 && (
+                                        <ul style={{ marginLeft: "15px", listStyleType: "circle" }}>
+                                            {topicSubtopics.map((subtopic) => (
+                                                <li key={subtopic.sub_topic_id}>
+                                                    <button className="show_subtopics"
+                                                        onClick={() => {
+                                                            setSelectedSubtopic(subtopic);
+                                                        }}
+                                                      >
+                                                        {subtopic.sub_topic_name}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
             </div>
-          </div>
+            {/* Main Content */}
+            <div className="main_content">
+            <h1 className="text-center mb-2 p-3 animate__animated animate__lightSpeedInLeft">JavaScript Tutorials</h1>
+
+                {/* ✅ Show Main Topic Description */}
+                {selectedTopic ? (
+                                    <div>
+                                        <h4 className="main_contentheading">{selectedTopic.topic_name}</h4>
+                                        <p className="main_contentPara" dangerouslySetInnerHTML={{ __html: he.decode(selectedTopic.description || "No description available.") }} />
+                
+                                    </div>
+                                ) : (
+                                    <p className="loading-text  animate__animated animate__fadeInDownBig">Select a topic to view details<span className="dots"></span></p>
+
+                                )}
+                
+                                {/* ✅ Show Subtopic Details Only If Selected */}
+                                {selectedSubtopic && (
+                    <div>
+                           <h5 className="main_contentheading">{selectedSubtopic.sub_topic_name}</h5>
+                           {selectedSubtopic.details.map((detail) => {
+                               // console.log("Encoded HTML from backend:", detail.description);
+                               // console.log("Decoded HTML after he.decode():", he.decode(detail.description));
+                   
+                               return (
+                                   <div className="main_contentPara" key={detail.id} dangerouslySetInnerHTML={{ __html: he.decode(detail.description) }} />
+                               );
+                           })}
+                       </div>
+                )}
+            </div>
         </div>
-      </div>
-    </>
-  );
+    );
 };
 
 export default javaScript;
+
+
+

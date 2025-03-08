@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
+import IndexUrl from '../Hooks/IndexUrl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
-import IndexUrl from '../Hooks/IndexUrl'
-
 
 import '../style_folder/Dashboard.css'
 
@@ -17,24 +16,28 @@ export default function Dashboard() {
   return (
     <div>
       < IndexUrl.Navbar />
+      <IndexUrl.ScrollToTop />
       <div className="container-fluid banner">
-      <div className="banner-content">
-  <p className="logo-text">
-    Coding &nbsp;
-    <FontAwesomeIcon icon={faCube} size="2x" color="white" className="animated-icon" />
-  </p>
-  {/* <p className="logo-icon">&lt;/&gt;</p> */}
-  <div>
-    {/* <h2 className='banner_heading'>Learn to Code</h2> */}
-    <p className="banner_para">With the world's largest web developer site.</p>
-  </div>
-</div>
+        <div className="banner-content">
+          <p className="logo-text">
+            Coding &nbsp;
+            <FontAwesomeIcon icon={faCube} size="2x" color="white" className="animated-icon" />
+          </p>
+          <div>
+            <p className="banner_para">With the world's largest web developer site.</p>
+          </div>
+        </div>
 
         <form className="d-flex" role="search">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-sm-12">
-                <input className="form-control me-2 mb-1" style={{ borderRadius: "10px", border: "none", outline: "none", color: "#2c3e50", fontWeight: "bold" }} type="search" placeholder="Search" aria-label="Search" />
+                <input
+                  className="form-control input_style"
+                  type="search"
+                  placeholder="🔍 Search here..."
+                  aria-label="Search"
+                />
               </div>
             </div>
           </div>
@@ -45,7 +48,7 @@ export default function Dashboard() {
       <IndexUrl.AutoText />
       <IndexUrl.About />
       < IndexUrl.Update />
-      < IndexUrl.Template />
+      < IndexUrl.SuccessBanner />
       <IndexUrl.Footer />
     </div>
   )

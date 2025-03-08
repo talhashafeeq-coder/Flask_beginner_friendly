@@ -40,6 +40,41 @@
   .logo:hover.logo-icon {
     color: #ffeb3b;
   }
+  .input_style {
+    width: 100%;
+    max-width: 300px;  /* Adjust width for responsiveness */
+    border-radius: 20px;
+    border: 2px solid #c9d1da; /* Blue border */
+    outline: none;
+    color: #2c3e50;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background: #f8f9fa; /* Light gray background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
+  
+  /* Focus effect when clicked */
+  .input_style:focus {
+    border-color: #0056b3; /* Dark blue */
+    box-shadow: 0 4px 8px rgba(0, 91, 187, 0.2);
+    background: white;
+  }
+  
+  /* Placeholder styling */
+  .input_style::placeholder {
+    color: #95a5a6; /* Light gray text */
+    font-weight: normal;
+    opacity: 0.8;
+  }
+  
+  /* Hover effect */
+  .input_style:hover {
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  }
+  
   
   /* Keyframes for sliding up the light */
   @keyframes slideUp {

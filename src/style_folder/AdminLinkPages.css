@@ -1,6 +1,7 @@
 .wapper{
   background: linear-gradient(to right, #ffd89b, #19547b);
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  min-height: 50vh;
   padding: 0px;
   margin: 0px;
 }

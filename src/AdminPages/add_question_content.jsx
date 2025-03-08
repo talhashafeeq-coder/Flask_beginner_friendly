@@ -66,7 +66,7 @@ const AddQuestionContent = () => {
      <IndexUrl.Navbar2 />
     <div className='wapper'>
       <div className="container mt-5  sub_wapper" >
-        <h2 className="mb-4 text-center">Add New Question</h2>
+        <h3 className="mb-4 text-center">Add New Question</h3>
         {message && <p className="alert alert-info">{message}</p>}
         <form onSubmit={handleSubmit} className="shadow wapper p-4 ">
           <div className="form-group mb-3">

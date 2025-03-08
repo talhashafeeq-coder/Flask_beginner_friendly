@@ -75,7 +75,7 @@ const ExamContent = () => {
           <IndexUrl.Navbar2 />
     <div className='wapper'>
       <div className="container mt-5 sub_wapper">
-        <h2 className="mb-4 text-center">Add Exam Question!</h2>
+        <h3 className="mb-4 text-center">Add Exam Question!</h3>
 
         {message && <div className="alert alert-info">{message}</div>}
         {loading && <div className="alert alert-info">Loading...</div>}
