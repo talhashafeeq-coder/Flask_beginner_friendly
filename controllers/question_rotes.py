@@ -5,10 +5,12 @@ from models.exam_collection import Exam
 
 auth_bp = Blueprint('add_question', __name__)
 
+# 📌 Route 1: Add Question
 @auth_bp.route('/question', methods=['POST'])
 def add_question():
     try:
         data = request.get_json()
+        # print("Received Data:", data)  # Debugging line
         exam_name = data.get('exam_name')
 
         if not exam_name:
@@ -32,20 +34,24 @@ def add_question():
         db.session.add(new_question)
         db.session.commit()
         return jsonify({'message': 'Question added successfully'}), 201
+    # 🐱‍👤 Error handling
     except Exception as e:
         db.session.rollback()
         print(f"Error: {e}")
-        return jsonify({'error': str(e)}), 400@auth_bp.route('/question', methods=['GET'])
+        return jsonify({'error': str(e)}), 500
+
+# 📌 Route 2: Get Question
 @auth_bp.route('/question', methods=['GET'])
 def get_question():
     try:
         question = Question.query.all()
         return jsonify([question.serialize() for question in question]), 200
+    # 🐱‍👤 Error Handling
     except Exception as e:
-        # Log the error
         print(f"Error: {e}")
-        return jsonify({'error': str(e)}), 400
+        return jsonify({'error': str(e)}), 500
 
+# 📌 Route 3: Verify Question
 @auth_bp.route('/verify_question', methods=['POST'])
 def verify_question():
     try:
@@ -73,8 +79,9 @@ def verify_question():
         }), 200
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return jsonify({'error': str(e)}), 500
 
+# 📌 Route 4: Get Verify Question
 @auth_bp.route('/verify_question', methods=['GET'])
 def get_verify_question():
     try:
