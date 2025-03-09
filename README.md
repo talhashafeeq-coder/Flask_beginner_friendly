@@ -1,8 +1,23 @@
-# React + Vite
+ # 📌 CourseHub
+An interactive platform to explore courses and test your knowledge.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# 🚀 Overview
+Welcome! This project is built using React for the frontend and Flask (Python) for the backend. It provides users with various courses and allows them to take assessments. An admin panel is available to manage courses and store data in a MySQL database.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 🔥 Features
+✅ User-friendly interface for browsing courses
+✅ Interactive assessments for each course
+✅ Secure admin panel for managing courses
+✅ Data stored efficiently using MySQL
+
+# 🛠️ Tech Stack
+Frontend: React, JavaScript, HTML, CSS
+Backend: Flask (Python)
+Database: MySQL
+
+# 📦 Installation & Setup
+Clone the repository:
+https://github.com/talhashafeeq-coder/CourseHub.git
+cd CourseHub
+git checkout REACT  # Switch to REACT branch
