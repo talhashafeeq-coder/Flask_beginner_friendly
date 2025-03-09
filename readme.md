@@ -11,10 +11,10 @@ Welcome to the backend of **CourseHub**! This backend is built using Flask (Pyth
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
-Make sure you have the following installed:<br>
-- Python 3.x<br>
-- pip (Python package manager)<br>
-- MySQL database<br>
+Make sure you have the following installed:
+- Python 3.x
+- pip (Python package manager)
+- MySQL database
 
 ### 1️⃣ Clone the Repository
 ```bash
@@ -24,14 +24,14 @@ cd CourseHub/backend  # Navigate to backend directory
 
 ### 2️⃣ Create a Virtual Environment 
 ```bash
-python -m venv venv<br>
-source venv/bin/activate<br>  # For macOS/Linux
+python -m venv venv
+source venv/bin/activate  # For macOS/Linux
 venv\Scripts\activate    # For Windows
 ```
 
 ### 3️⃣ Install Dependencies
 ```bash
-pip install -r requirements.txt<br>
+pip install -r requirements.txt
 ```
 
 
@@ -44,10 +44,10 @@ flask db upgrade
 ```bash
 python run.py  # Or flask run
 ```
-The backend will be available at `http://127.0.0.1:5000/`<br>
+The backend will be available at `http://127.0.0.1:5000/`
 
 ## 📊 Database Tables
-The backend consists of the following database tables:<br>
+The backend consists of the following database tables:
 
 1. **Config.py** - Handles database connection.<br>
 2. **Add Courses** - Stores added courses.<br>
@@ -108,12 +108,4 @@ The backend consists of the following database tables:<br>
 
 ### 📌 Contributing
 Feel free to submit pull requests or open issues to improve this project!
-
-
-
-
-
-
-
-
 
